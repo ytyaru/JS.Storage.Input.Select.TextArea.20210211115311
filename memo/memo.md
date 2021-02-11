@@ -91,3 +91,9 @@ JSON.stringify(newObject);
 要素name属性値|`checked`な`input`要素の`value`属性値|`input[type="radio"], input[type="checkbox"]`
 要素id属性値|`selected`な`option`要素のid値|`select`
 
+# 情報源
+
+* https://developer.mozilla.org/ja/docs/Web/HTML/Element/input
+    * https://developer.mozilla.org/ja/docs/Web/HTML/Element/input/file
+* https://developer.mozilla.org/ja/docs/Web/API/File/Using_files_from_web_applications#getting_information_about_selected_files
+* https://developer.mozilla.org/ja/docs/Web/HTML/Element/dialog
