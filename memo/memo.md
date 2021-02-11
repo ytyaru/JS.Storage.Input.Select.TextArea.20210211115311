@@ -97,3 +97,13 @@ JSON.stringify(newObject);
     * https://developer.mozilla.org/ja/docs/Web/HTML/Element/input/file
 * https://developer.mozilla.org/ja/docs/Web/API/File/Using_files_from_web_applications#getting_information_about_selected_files
 * https://developer.mozilla.org/ja/docs/Web/HTML/Element/dialog
+
+
+# store
+
+* 対象要素を取得する
+* 対象要素の保存するキーを取得する
+* 対象要素の保存する値を取得する
+* 対象要素にあたる保存されたキーを取得する
+* 対象要素にあたる保存された値を取得する
+* 対象要素にあたる保存された値を設定する場所を取得する（value属性、textContent、innerText, innerHTML）
