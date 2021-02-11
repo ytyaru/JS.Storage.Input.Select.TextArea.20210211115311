@@ -89,7 +89,7 @@ JSON.stringify(newObject);
 要素id属性値|value属性値|`input[type="text"], input[type="search"], input[type="tel"], input[type="url"], input[type="email"], input[type="password"], input[type="datetime"], input[type="date"], input[type="month"], input[type="week"], input[type="time"], input[type="datetime-local"], input[type="number"], input[type="range"], input[type="color"]`
 要素id属性値|textContent（innerText, innerHTML）|`textarea`
 要素name属性値|`checked`な`input`要素の`value`属性値|`input[type="radio"], input[type="checkbox"]`
-要素id属性値|`selected`な`option`要素のid値|`select`
+要素id属性値|`selected`な`option`要素の`value`属性値|`select`
 
 # 情報源
 
