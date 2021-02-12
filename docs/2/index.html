@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>input,select,textareaの要素をLocalStorageに保存する。</title>
     <script src="./common/Class.js"></script>
+    <script src="./storage/store/InputStore.js"></script>
     <script src="./storage/store/InputRadioStore.js"></script>
     <script src="./storage/store/InputCheckboxStore.js"></script>
     <script src="./storage/store/StoreFactory.js"></script>
@@ -22,8 +23,8 @@
 <input type="url" pattern="^.+$" placeholder="https://www.abc.com/">
 <input type="email" pattern="^.+@.+$" placeholder="mail@abc.com">
 <input type="password" pattern="^[0-9a-zA-Z_]+$" min="8" max="1024" placeholder="password">
-<input type="search" autocomplete list="search-keywords" placeholder="search word">
-<datalist id="search-keywords">
+<input type="search" autocomplete list="datalist-search-keywords" placeholder="search word">
+<datalist id="datalist-search-keywords">
     <option value="検索キーワード候補１">
     <option value="action">
     <option value="back">

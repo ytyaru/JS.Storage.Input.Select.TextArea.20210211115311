@@ -1,18 +1,22 @@
 class InputStore {
-    static getElements() { return document.querySelectorAll(`input[type="radio"]`); }
+    static getElements() { return document.querySelectorAll(`input[type="text"],input[type="tel"],input[type="url"],input[type="email"],input[type="password"],input[type="search"],input[type="number"],input[type="range"],input[type="color"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="time"],input[type="month"],input[type="week"],input[type="hidden"]`); }
     static getKeys(elements) {
-        return new Set(Array.from(elements).map(radio=>radio.getAttribute('name')));
+        return new Set(Array.from(elements).map(element=>element.getAttribute('id')));
     }
     static getKey(element) {
-        return element.getAttribute('name');
+        console.log(element.getAttribute('id') || InputStore.#createKey(element));
+        return element.getAttribute('id') || InputStore.#createKey(element);
+    }
+    static #createKey(target) {
+        for (const [index, element] of InputStore.getElements().entries()) {
+            if (target === element) { return `input-${target.getAttribute('type') || 'text'}-${index}`; }
+        }
     }
     static getValue(element) {
-        const checked = document.querySelector(`input[type="radio"][name="${element.getAttribute('name')}"]:checked`);
-        if (!checked) { return undefined; }
-        return checked.getAttribute('value') || document.querySelector(`label[for="${checked.getAttribute('id')}"]`).textContent;
+        return element.value;
     }
     static setValue(element, value) {
-        const selected = element.querySelector(`input[type="radio"][name="${element.getAttribute('name')}"][value="${value}"]`);
-        if (selected) { selected.setAttribute('selected', 'selected'); }
+        element.setAttribute('value', value);
     }
+    static isSaveTarget(element) { return true; }
 }

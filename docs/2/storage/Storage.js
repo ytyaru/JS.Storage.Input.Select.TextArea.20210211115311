@@ -20,12 +20,14 @@ class Storage { // 抽象クラスにしたい
     #load(element, store) {
         const key = store.getKey(element);
         const value = localStorage.getItem(key);
+        if (!value) { return; }
         store.setValue(element, value);
     }
     #save(element, store) {
         if (!store.isSaveTarget(element)) { return; }
         const key = store.getKey(element);
         const value = store.getValue(element);
+        if (!value) { return; }
         localStorage.setItem(key, value);
     }
 }
