@@ -8,7 +8,7 @@ class Storage { // 抽象クラスにしたい
     #radiosFunc(func, target) {
         // 対象要素のみ実行する
         if (target) {
-            func(target, this.getStore(target));
+            func(target);
             return;
         }
         // すべての要素に実行する
@@ -16,7 +16,7 @@ class Storage { // 抽象クラスにしたい
         for (let elementStore of elementStores) {
             const elements = elementStore.getElements();
             for (let element of elements) {
-                func(element, elementStore);
+                func(element);
             }
         }
     }
@@ -33,15 +33,38 @@ class Storage { // 抽象クラスにしたい
         console.error(msg, target);
         throw new Error(msg);
     }
-    #load(element, store) {
+    #load(element) {
+        const store = this.getStore(element);
         const key = store.getKey(element);
         const value = localStorage.getItem(key);
         store.setValue(element, value);
     }
-    #save(element, store) {
-        if (!store.isSaveTarget(element)) { return; }
-        const key = store.getKey(element);
-        const value = store.getValue(element);
-        localStorage.setItem(key, value);
+    #save(element) {
+        const checkedRadio = (element) ? element : document.querySelector(`input[type="radio"][name="${name}"]:checked`);
+        if (checkedRadio) {
+            console.log(checkedRadio);
+            const name = checkedRadio.getAttribute('name');
+            const value = checkedRadio.getAttribute('value') || checkedRadio.textContent;
+            localStorage.setItem(name, value);
+        }
+    }
+    #load(name, event) {
+        const key = (event) ? event.target.getAttribute('name') : name;
+        const value = localStorage.getItem(key);
+        if (value) {
+            const checkedRadio = document.querySelector(`input[type="radio"][name="${name}"][value="${value}"]`);
+            if (checkedRadio) {
+                checkedRadio.setAttribute('checked', 'checked');
+            }
+        }
+    }
+    #save(name, event) {
+        const checkedRadio = (event) ? event.target : document.querySelector(`input[type="radio"][name="${name}"]:checked`);
+        if (checkedRadio) {
+            console.log(checkedRadio);
+            const name = checkedRadio.getAttribute('name');
+            const value = checkedRadio.getAttribute('value') || checkedRadio.textContent;
+            localStorage.setItem(name, value);
+        }
     }
 }

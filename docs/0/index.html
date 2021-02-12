@@ -3,6 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>input,select,textareaの要素をLocalStorageに保存する。</title>
+    <script src="./storage/store/InputRadioStore.js"></script>
+    <script src="./storage/Storage.js"></script>
+    <script src="./storage/OnceStorage.js"></script>
+    <script src="./storage/EveryStorage.js"></script>
+    <script src="./storage/StorageFacotry.js"></script>
     <script src="./main.js"></script>
 </head>
 <body>
@@ -28,11 +33,11 @@
 
 <!-- datetime, date, month, week, time, datetime-local -->
 <input type="datetime" value="2020-01-02T12:34:56Z">
-<input type="datetime-local" value="2020-01-02 12:34:56">
-<input type="date" value="2020-01-02T12:34:56Z">
-<input type="time" value="2020-01-02T12:34:56Z">
-<input type="month" value="2020-01-02T12:34:56Z">
-<input type="week" value="2020-01-02T12:34:56Z">
+<input type="datetime-local" value="2020-01-02T12:34:56">
+<input type="date" value="2020-01-02">
+<input type="time" value="12:34:56">
+<input type="month" value="2020-01">
+<input type="week" value="2020-W01">
 
 <input type="hidden" value="隠し値">
 
