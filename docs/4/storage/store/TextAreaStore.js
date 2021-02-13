@@ -1,5 +1,5 @@
 class TextAreaStore {
-    static getElements() { return document.querySelectorAll(`input[type="radio"]`); }
+    static getElements() { return document.querySelectorAll(`textarea`); }
     static getKeys(elements) {
         return new Set(Array.from(elements).map(radio=>radio.getAttribute('name')));
     }
