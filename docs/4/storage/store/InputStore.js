@@ -4,7 +4,6 @@ class InputStore {
         return new Set(Array.from(elements).map(element=>element.getAttribute('id')));
     }
     static getKey(element) {
-        console.log(element.getAttribute('id') || InputStore.#createKey(element));
         return element.getAttribute('id') || InputStore.#createKey(element);
     }
     static #createKey(target) {

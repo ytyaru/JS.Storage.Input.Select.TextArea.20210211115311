@@ -1,18 +1,18 @@
 class TextAreaStore {
     static getElements() { return document.querySelectorAll(`textarea`); }
-    static getKeys(elements) {
-        return new Set(Array.from(elements).map(radio=>radio.getAttribute('name')));
-    }
     static getKey(element) {
-        return element.getAttribute('name');
+        return element.getAttribute('id') || TextAreaStore.#createKey(element);
+    }
+    static #createKey(target) {
+        for (const [index, element] of TextAreaStore.getElements().entries()) {
+            if (target === element) { return `${target.tagName.toLowerCase()}-${index}`; }
+        }
     }
     static getValue(element) {
-        const checked = document.querySelector(`input[type="radio"][name="${element.getAttribute('name')}"]:checked`);
-        if (!checked) { return undefined; }
-        return checked.getAttribute('value') || document.querySelector(`label[for="${checked.getAttribute('id')}"]`).textContent;
+        return element.value;
     }
     static setValue(element, value) {
-        const selected = element.querySelector(`input[type="radio"][name="${element.getAttribute('name')}"][value="${value}"]`);
-        if (selected) { selected.setAttribute('selected', 'selected'); }
+        element.value = value;
     }
+    static isSaveTarget(element) { return true; }
 }

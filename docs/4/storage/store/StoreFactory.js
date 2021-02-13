@@ -1,5 +1,5 @@
 class StoreFactory {
-    static #stores = [InputStore, InputRadioStore, InputCheckboxStore, SelectStore];
+    static #stores = [InputStore, InputRadioStore, InputCheckboxStore, SelectStore, TextAreaStore];
     static get(id=null) {
         return  (id) ? Class.get(`${id}Store`) : StoreFactory.#stores;
     }
