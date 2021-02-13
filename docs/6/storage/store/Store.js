@@ -8,6 +8,7 @@ class Store { // 抽象クラスにしたい
     getKey(element) {
         const formKey = this.#getFormKey(element);
         const elementKey = this.getElementKey(element);
+        console.log(formKey);
         return (formKey) ? `${formKey}-${elementKey}` : `${elementKey}`;
     }
     // protectedにしたい
@@ -24,13 +25,23 @@ class Store { // 抽象クラスにしたい
         const formId = element.getAttribute('form');
         if (formId) { return formId; }
         const parentForm = this.#searchParentForm(element);
-        if (parentForm) { return parentForm.getAttribute('id') || this.getElementKey(parentForm); }
+        console.log(parentForm);
+        if (parentForm) { return this.#getFormElementKey(parentForm); }
+//        if (parentForm) { console.log(parentForm.getAttribute('id'),this.getElementKey(parentForm));return parentForm.getAttribute('id') || this.createFormKey(parentForm); }
     }
     #searchParentForm(element, parent=null) {
         if (parent === null) { parent = element.parentElement; }
         if ('form' === parent.tagName.toLowerCase()) { return parent; }
         if (parent === document.body) { return undefined; }
         this.#searchParentForm(element, parent.parentElement)
+    }
+    #getFormElementKey(element) {
+        return element.getAttribute('id') || this.#createFormKey(element);
+    }
+    #createFormKey(target) {
+        for (const [index, element] of document.querySelectorAll(`form`).entries()) {
+            if (target === element) { return `${target.tagName.toLowerCase()}-${index}`; }
+        }
     }
     // interface にしたい。getValue, setValue
     getValue(element) { return element.value; }

@@ -8,7 +8,6 @@ class StoreFactory {
     }
     static * getElements() {
         for (let store of StoreFactory.get()) {
-            console.log(store);
             for (let element of store.getElements()) {
                 yield element;
             }
