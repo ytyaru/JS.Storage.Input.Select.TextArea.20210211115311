@@ -16,18 +16,13 @@ class Store { // 抽象クラスにしたい
         return element.getAttribute('id') || this.createKey(element);
     }
     // protectedにしたい
-    createKey(target) {
-        for (const [index, element] of this.getElements().entries()) {
-            if (target === element) { return `${target.tagName.toLowerCase()}-${index}`; }
-        }
-    }
+    createKey(target) { return this.#createKey(target, this.getElements()); }
     #getFormKey(element) {
         const formId = element.getAttribute('form');
         if (formId) { return formId; }
         const parentForm = this.#searchParentForm(element);
         console.log(parentForm);
         if (parentForm) { return this.#getFormElementKey(parentForm); }
-//        if (parentForm) { console.log(parentForm.getAttribute('id'),this.getElementKey(parentForm));return parentForm.getAttribute('id') || this.createFormKey(parentForm); }
     }
     #searchParentForm(element, parent=null) {
         if (parent === null) { parent = element.parentElement; }
@@ -38,8 +33,9 @@ class Store { // 抽象クラスにしたい
     #getFormElementKey(element) {
         return element.getAttribute('id') || this.#createFormKey(element);
     }
-    #createFormKey(target) {
-        for (const [index, element] of document.querySelectorAll(`form`).entries()) {
+    #createFormKey(target) { return this.#createKey(target, document.querySelectorAll(`form`)); }
+    #createKey(target, elements) {
+        for (const [index, element] of elements.entries()) {
             if (target === element) { return `${target.tagName.toLowerCase()}-${index}`; }
         }
     }
